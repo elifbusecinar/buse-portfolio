@@ -1554,8 +1554,8 @@ body {
     /* Allow clicking through empty areas */
     /* Add slight background to prevent text clash */
     background: linear-gradient(to top, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.4) 60%, transparent 100%);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .footer-content {
@@ -1615,27 +1615,34 @@ body {
 }
 
 .social-icon {
-    color: var(--color-white);
-    opacity: 0.85;
-    transition: var(--transition);
+    color: var(--color-dark);
+    opacity: 0.75;
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(8px);
+    border: 1px solid rgba(45, 45, 45, 0.12);
     border-radius: 50%;
-    width: 45px;
-    height: 45px;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
+    width: 48px;
+    height: 48px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.social-icon svg {
+    width: 22px;
+    height: 22px;
+    stroke-width: 2.5;
 }
 
 .social-icon:hover {
     opacity: 1;
     transform: translateY(-3px) scale(1.05);
-    color: var(--color-white);
-    background: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.6));
+    color: var(--color-pink);
+    background: rgba(255, 255, 255, 0.7);
+    border-color: var(--color-pink);
+    box-shadow: 0 4px 20px rgba(242, 134, 149, 0.25);
 }
 
 @media (max-width: 768px) {
@@ -1789,6 +1796,7 @@ body {
     text-decoration: none;
     cursor: pointer;
 }
+
 /* Extra Small Mobile Devices */
 @media (max-width: 480px) {
     :root {
@@ -1903,5 +1911,3 @@ body {
         height: 20px;
     }
 }
-
-
