@@ -295,3 +295,59 @@ function initLightbox() {
     });
 }
 
+
+// ==================== CONTACT FORM HANDLING ====================
+const contactForm = document.getElementById('contact-form');
+const submitBtn = document.getElementById('submit-btn');
+const btnText = submitBtn.querySelector('.btn-text');
+const btnLoading = submitBtn.querySelector('.btn-loading');
+const formSuccess = document.getElementById('form-success');
+const formError = document.getElementById('form-error');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // Hide previous messages
+        formSuccess.style.display = 'none';
+        formError.style.display = 'none';
+        
+        // Show loading state
+        btnText.style.display = 'none';
+        btnLoading.style.display = 'flex';
+        submitBtn.disabled = true;
+        
+        try {
+            const formData = new FormData(contactForm);
+            const response = await fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (response.ok) {
+                // Success
+                formSuccess.style.display = 'flex';
+                contactForm.reset();
+                
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    formSuccess.style.display = 'none';
+                }, 5000);
+            } else {
+                // Error
+                formError.style.display = 'flex';
+            }
+        } catch (error) {
+            // Network error
+            formError.style.display = 'flex';
+        } finally {
+            // Reset button state
+            btnText.style.display = 'inline';
+            btnLoading.style.display = 'none';
+            submitBtn.disabled = false;
+        }
+    });
+}

@@ -494,24 +494,62 @@
                     <h2 class="section-title">Get in touch</h2>
                     <p class="contact-subtitle">Have a question or a project in mind? Let's talk.</p>
 
-                    <form class="contact-form" action="#" onsubmit="event.preventDefault();">
+                    <!-- Success Message -->
+                    <div id="form-success" class="form-message form-success" style="display: none;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                        <p>Thank you! Your message has been sent successfully.</p>
+                    </div>
+
+                    <!-- Error Message -->
+                    <div id="form-error" class="form-message form-error" style="display: none;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="15" y1="9" x2="9" y2="15"></line>
+                            <line x1="9" y1="9" x2="15" y2="15"></line>
+                        </svg>
+                        <p>Oops! Something went wrong. Please try again.</p>
+                    </div>
+
+                    <form id="contact-form" class="contact-form" action="https://formspree.io/f/xgoybpdn" method="POST">
                         <div class="form-group">
                             <label for="name" class="sr-only">Name</label>
-                            <input type="text" id="name" class="form-input" placeholder="Name" required>
+                            <input type="text" id="name" name="name" class="form-input" placeholder="Name" required>
                         </div>
 
                         <div class="form-group">
                             <label for="email" class="sr-only">Email</label>
-                            <input type="email" id="email" class="form-input" placeholder="Email" required>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="Email" required>
                         </div>
 
                         <div class="form-group">
                             <label for="message" class="sr-only">Message</label>
-                            <textarea id="message" class="form-input form-textarea" placeholder="Message"
+                            <textarea id="message" name="message" class="form-input form-textarea" placeholder="Message"
                                 required></textarea>
                         </div>
 
-                        <button type="submit" class="btn-submit">Send Message</button>
+                        <button type="submit" class="btn-submit" id="submit-btn">
+                            <span class="btn-text">Send Message</span>
+                            <span class="btn-loading" style="display: none;">
+                                <svg class="spinner" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="12" y1="2" x2="12" y2="6"></line>
+                                    <line x1="12" y1="18" x2="12" y2="22"></line>
+                                    <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
+                                    <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line>
+                                    <line x1="2" y1="12" x2="6" y2="12"></line>
+                                    <line x1="18" y1="12" x2="22" y2="12"></line>
+                                    <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
+                                    <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
+                                </svg>
+                                Sending...
+                            </span>
+                        </button>
                     </form>
                 </div>
             </div>
