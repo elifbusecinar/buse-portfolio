@@ -1,12 +1,17 @@
 <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
   <defs>
+    <linearGradient id='brandGradient' x1='0%' y1='0%' x2='100%' y2='100%'>
+      <stop offset='0%' style='stop-color:#F28695;stop-opacity:1' />
+      <stop offset='100%' style='stop-color:#F1CCA6;stop-opacity:1' />
+    </linearGradient>
     <filter id='glow' x='-50%' y='-50%' width='200%' height='200%'>
-      <feGaussianBlur stdDeviation='1.5' result='coloredBlur'/>
+      <feGaussianBlur stdDeviation='1.2' result='coloredBlur'/>
       <feMerge>
         <feMergeNode in='coloredBlur'/>
         <feMergeNode in='SourceGraphic'/>
       </feMerge>
     </filter>
   </defs>
-  <path d='M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5Z' fill='white' filter='url(#glow)'/>
+  <!-- 4-pointed star (diamond-like but sharper) -->
+  <path d='M12 2L14 10L22 12L14 14L12 22L10 14L2 12L10 10Z' fill='url(#brandGradient)' filter='url(#glow)'/>
 </svg>
