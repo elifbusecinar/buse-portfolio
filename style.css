@@ -342,47 +342,37 @@ body {
 
 
 .name-text {
-    font-family: 'Cinzel', serif;
-    font-size: 2.4rem;
+    font-family: 'Playfair Display', serif !important;
+    font-size: 1.8rem;
     color: var(--color-white);
-    font-weight: 500;
-    letter-spacing: 4px;
-    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: none;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     display: inline-flex;
     flex-wrap: nowrap;
     cursor: default;
-    padding: 10px 0;
+    padding: 12px 0;
+    pointer-events: auto !important;
 }
 
 .char {
     display: inline-block;
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
-    will-change: transform, color, text-shadow;
+    pointer-events: auto !important;
 }
 
 .char-space {
-    width: 0.6em;
-    /* Explicit space width for flex container */
-}
-
-/* Collective hover effect: dim others when one is hovered */
-.name-text:hover .char {
-    opacity: 0.5;
-    filter: blur(1px);
-    transform: scale(0.95);
+    width: 0.4em;
 }
 
 .char:hover {
-    transform: translateY(-12px) scale(1.3) rotate(2deg);
-    color: var(--color-pink);
-    opacity: 1 !important;
-    filter: blur(0) !important;
-    text-shadow:
-        0 0 20px rgba(242, 134, 149, 0.8),
-        0 10px 20px rgba(0, 0, 0, 0.3);
-    z-index: 10;
+    color: var(--color-white) !important;
+    text-shadow: 0 0 25px rgba(255, 255, 255, 0.9),
+        0 0 40px rgba(255, 255, 255, 0.6),
+        0 2px 8px rgba(0, 0, 0, 0.3);
+    transform: translateY(-3px) scale(1.05);
 }
 
 .name-underline {
@@ -448,7 +438,7 @@ body {
     top: var(--spacing-md);
     left: var(--spacing-md);
     z-index: 3000;
-    pointer-events: none;
+    pointer-events: auto;
     width: auto;
     /* Ensure it doesn't stretch */
 }
@@ -1416,24 +1406,6 @@ body {
     /* Let clicks pass through */
 }
 
-/* Ensure content is above canvas */
-.brand-name,
-.hero-center {
-    z-index: 2;
-    position: relative;
-}
-
-/* Brand Name Branding - Top Left */
-.brand-name {
-    position: absolute;
-    top: 40px;
-    left: 40px;
-    bottom: auto;
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
 
 /* ==================== STICKY FOOTER ==================== */
 .sticky-footer {
@@ -1555,9 +1527,6 @@ body {
         top: auto;
     }
 
-    .name-text {
-        font-size: 1.2rem;
-    }
 
     /* Center decorations on mobile */
     .hero-decorations {
