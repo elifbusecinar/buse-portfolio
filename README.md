@@ -1,59 +1,26 @@
-# BusePortfolio
+# Elif Buse Çınar - Modern Portfolio ✨
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.8.
+A stunning, professional portfolio website featuring a continuously moving gradient background and an elegant glassmorphic design. Built with a focus on minimalist aesthetics and smooth user experience.
 
-## Development server
+## 🚀 Features
+- **Modern UI:** Glassmorphism effects with backdrop blur.
+- **Dynamic Background:** Continuously animated color-shifting gradient.
+- **Interactive Projects:** 5 featured projects with image galleries, arrow navigation, and lightbox enlarged view.
+- **Responsive Design:** Fully optimized for desktop, tablet, and mobile.
+- **Tabbed Navigation:** Seamless transitions between Home, About, Projects, and Contact.
 
-To start a local development server, run:
+## 🛠️ Tech Stack
+- **HTML5:** Semantic structure.
+- **CSS3:** Advanced animations, custom scrollbars, and glassmorphism.
+- **JavaScript (Vanilla):** Lightbox gallery, tab switching, and canvas animations.
+- **Google Fonts:** Outfit & Playfair Display.
 
-```bash
-ng serve
-```
+## 📂 Projects Included
+1. **Algorithm Visualizer:** 26+ algorithms visualizer with pathfinding.
+2. **WeightTrack PWA:** Offline-first health management app.
+3. **Döngü:** Privacy-focused menstrual health tracker.
+4. **Student Management System:** Role-based academic portal for Akdeniz University.
+5. **TeamTrack:** Scalable team and task management backend.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---
+Built with love by [Elif Buse Çınar](https://github.com/elifbusecinar)
