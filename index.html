@@ -17,7 +17,2110 @@
         rel="stylesheet">
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css?v=2.1">
+    <style>
+/* ==================== CSS VARIABLES ==================== */
+:root {
+    /* Sunset Mode - Blushing Sands Color Palette */
+    --color-pink: #F28695;
+    --color-light-pink: #F2BFB4;
+    --color-peach: #F1CCA6;
+    --color-yellow: #F2E6B8;
+
+    /* Neutral Colors */
+    --color-white: #FFFFFF;
+    --color-dark: #2D2D2D;
+    --color-text: #333333;
+
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+    --spacing-xl: 6rem;
+
+    /* Typography */
+    --font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-size-base: 16px;
+    --font-size-sm: 0.875rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.5rem;
+    --font-size-2xl: 2rem;
+    --font-size-3xl: 3rem;
+    --font-size-4xl: 4rem;
+
+    /* Effects */
+    --border-radius: 20px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+/* Midnight Mode - Dark Palette */
+body.midnight-mode {
+    /* Midnight Color Palette from uploaded image */
+    --color-pink: #7C679E;
+    --color-light-pink: #35369C;
+    --color-peach: #3F2548;
+    --color-yellow: #24201A;
+
+    /* Inverted Colors for Midnight */
+    --color-white: #FFFFFF;
+    --color-dark: #FFFFFF;
+    --color-text: #FFFFFF;
+}
+
+/* ==================== RESET & BASE ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: var(--font-size-base);
+}
+
+body {
+    font-family: var(--font-family);
+    color: var(--color-text);
+    line-height: 1.6;
+    overflow: hidden;
+    /* Prevent page scroll */
+    position: relative;
+    height: 100vh;
+}
+
+/* ==================== ANIMATED GRADIENT BACKGROUND ==================== */
+.gradient-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(45deg,
+            var(--color-yellow),
+            var(--color-peach),
+            var(--color-light-pink),
+            var(--color-pink),
+            var(--color-light-pink),
+            var(--color-peach),
+            var(--color-yellow));
+    background-size: 400% 400%;
+    animation: gradientFlow 20s ease infinite;
+}
+
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    25% {
+        background-position: 50% 100%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    75% {
+        background-position: 50% 0%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* ==================== GLASS MORPHISM ==================== */
+.glass-card {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    background: rgba(255, 255, 255, 0.35);
+}
+
+/* ==================== TAB NAVIGATION ==================== */
+.tab-nav {
+    display: flex;
+    flex-wrap: wrap;
+    /* Allow wrapping on small screens */
+    flex-shrink: 0;
+    /* Prevent shrinking */
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+    /* Reduced from spacing-lg (4rem) to sm (1rem) */
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 0.3rem;
+    /* Reduced from spacing-xs */
+    border-radius: 60px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: var(--shadow);
+    /* Fix: Ensure nav is above other elements */
+    position: relative;
+    z-index: 9999;
+    pointer-events: auto;
+    /* Force pointer events */
+}
+
+.tab-btn {
+    padding: 0.7rem 2rem;
+    /* Reduced from 1rem 2.5rem */
+    background: transparent;
+    border: none;
+    border-radius: 50px;
+    font-family: var(--font-family);
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--color-dark);
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.tab-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--color-pink), var(--color-peach));
+    opacity: 0;
+    transition: var(--transition);
+    z-index: -1;
+}
+
+.tab-btn:hover::before {
+    opacity: 0.3;
+}
+
+.tab-btn.active {
+    background: linear-gradient(135deg, var(--color-pink), var(--color-peach));
+    color: var(--color-white);
+    box-shadow: 0 10px 30px rgba(242, 134, 149, 0.4);
+}
+
+.tab-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* ==================== THEME TOGGLE SWITCH ==================== */
+.theme-toggle-wrapper {
+    position: fixed;
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+    z-index: 10000;
+}
+
+.theme-toggle-checkbox {
+    display: none;
+}
+
+.theme-toggle-label {
+    display: block;
+    width: 70px;
+    height: 35px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--shadow);
+}
+
+.theme-toggle-label:hover {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: var(--shadow-lg);
+    transform: scale(1.05);
+}
+
+.theme-toggle-slider {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 29px;
+    height: 29px;
+    background: var(--color-white);
+    border-radius: 50%;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toggle-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 16px !important;
+    height: 16px !important;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+/* Show moon by default, hide sun - More specific selectors */
+.theme-toggle-label .theme-toggle-slider .moon-icon {
+    display: block !important;
+}
+
+.theme-toggle-label .theme-toggle-slider .sun-icon {
+    display: none !important;
+}
+
+/* When checked, hide moon and show sun - More specific selectors */
+.theme-toggle-checkbox:checked+.theme-toggle-label .theme-toggle-slider .moon-icon {
+    display: none !important;
+}
+
+.theme-toggle-checkbox:checked+.theme-toggle-label .theme-toggle-slider .sun-icon {
+    display: block !important;
+}
+
+.theme-toggle-checkbox:checked+.theme-toggle-label .theme-toggle-slider {
+    transform: translateX(35px);
+}
+
+.theme-toggle-checkbox:checked+.theme-toggle-label {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+
+
+/* ==================== TAB CONTENT ==================== */
+.tab-content-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    height: 85vh;
+    position: relative;
+    overflow: hidden;
+    z-index: 2000;
+    /* Higher than decorations */
+}
+
+.tab-content {
+    display: none;
+    animation: fadeInUp 0.6s ease;
+    padding: var(--spacing-md);
+    height: 100%;
+    overflow-y: auto;
+    /* Allow scrolling for content that exceeds height */
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Project Scroll Indicator removed */
+
+
+/* ==================== PROJECTS SECTION ==================== */
+/* Specific Fix for Projects Tab - Prevent Double Scrollbar */
+#projects {
+    overflow: hidden;
+    /* Hide the outer content scroll */
+    padding: 0;
+    /* Maximize space */
+    position: relative;
+    /* Create stacking context for clipping */
+}
+
+/* Scroll Container */
+.projects-scroll-container {
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    /* Prevent horizontal overflow */
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    padding-right: 20px;
+    padding-top: 30px;
+    /* Increased to prevent clipping */
+    padding-bottom: 40px;
+    padding-left: 5px;
+    /* Small left padding for better spacing */
+    position: relative;
+    /* Ensure proper clipping context */
+}
+
+/* ==================== CUSTOM SCROLLBAR ==================== */
+/* Custom Scrollbar - Minimal Smooth Design */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg,
+            rgba(242, 134, 149, 0.6) 0%,
+            rgba(242, 191, 180, 0.6) 50%,
+            rgba(241, 204, 166, 0.6) 100%);
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg,
+            rgba(242, 134, 149, 0.9) 0%,
+            rgba(242, 191, 180, 0.9) 50%,
+            rgba(241, 204, 166, 0.9) 100%);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Scrollbar for Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(242, 134, 149, 0.6) rgba(255, 255, 255, 0.05);
+}
+
+
+/* Specific Fix for Projects Tab - Prevent Double Scrollbar */
+#projects {
+    overflow: hidden;
+    /* Hide the outer content scroll */
+    padding: 0;
+    /* Maximize space */
+}
+
+#projects .projects-scroll-container {
+    padding: var(--spacing-md);
+    padding-right: var(--spacing-sm);
+    /* Account for scrollbar */
+    height: 100%;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+}
+
+/* Ensure scrollbar applies nicely to nested container */
+.projects-scroll-container::-webkit-scrollbar,
+.tab-content::-webkit-scrollbar {
+    width: 30px;
+    /* Match global big star width */
+}
+
+
+
+/* Inherit global star style */
+
+
+
+
+/* ==================== MAIN CONTAINER ==================== */
+.main-container {
+    height: 100vh;
+    /* Full viewport height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    /* Start from top so nav isn't cut off */
+    padding: var(--spacing-md);
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+}
+
+/* ==================== NEW HERO DESIGN ==================== */
+.hero-content-new {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--spacing-lg);
+    height: 100%;
+    /* Fill parent (.tab-content) */
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+
+
+.name-text {
+    font-family: 'Playfair Display', serif !important;
+    font-size: 1.8rem;
+    color: var(--color-white);
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: none;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    display: inline-flex;
+    flex-wrap: nowrap;
+    cursor: default;
+    padding: 12px 0;
+    pointer-events: auto !important;
+}
+
+.char {
+    display: inline-block;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    pointer-events: auto !important;
+}
+
+.char-space {
+    width: 0.4em;
+}
+
+.char:hover {
+    color: var(--color-white) !important;
+    text-shadow: 0 0 25px rgba(255, 255, 255, 0.9),
+        0 0 40px rgba(255, 255, 255, 0.6),
+        0 2px 8px rgba(0, 0, 0, 0.3);
+    transform: translateY(-3px) scale(1.05);
+}
+
+.name-underline {
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.8);
+    margin-top: 5px;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+/* Wave Patterns - Wavy Lines like reference */
+.wave-pattern {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    opacity: 0.2;
+    pointer-events: none;
+    background-image:
+        repeating-linear-gradient(0deg,
+            transparent,
+            transparent 8px,
+            rgba(255, 255, 255, 0.4) 8px,
+            rgba(255, 255, 255, 0.4) 10px);
+    border-radius: 50%;
+}
+
+.wave-top-left {
+    top: 20px;
+    left: 20px;
+    z-index: 1;
+    transform: rotate(-15deg);
+}
+
+.wave-bottom-right {
+    bottom: 20px;
+    right: 20px;
+    z-index: 1;
+    transform: rotate(15deg);
+}
+
+/* ==================== HERO CANVAS ==================== */
+#hero-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    /* Low, but above gradient. */
+    pointer-events: none;
+}
+
+/* Ensure content is strictly above background */
+.tab-content-wrapper {
+    position: relative;
+    z-index: 2000;
+    /* Higher than decorations */
+}
+
+/* Ensure content is above canvas */
+.brand-name {
+    position: absolute;
+    top: var(--spacing-md);
+    left: var(--spacing-md);
+    z-index: 3000;
+    pointer-events: auto;
+    width: auto;
+    /* Ensure it doesn't stretch */
+}
+
+.hero-center {
+    z-index: 3000;
+    /* Very high */
+    position: relative;
+    pointer-events: none;
+    /* Ensure it takes full space and centers content */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-text-overlay {
+    pointer-events: auto;
+}
+
+/* Hero Decorations Container (Global) */
+.hero-decorations {
+    position: absolute;
+    /* Revert to center */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 150;
+    /* Above canvas, below tab-content */
+    pointer-events: none;
+}
+
+/* No blocking clicks */
+
+
+/* Abstract Lines Around Center - Adjusted for no photo */
+.abstract-line {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.4);
+    pointer-events: none;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    animation: floating 6s ease-in-out infinite;
+}
+
+@keyframes floating {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(2deg);
+    }
+}
+
+.line-1 {
+    width: 150px;
+    height: 3px;
+    top: 0;
+    left: 10%;
+    border-radius: 50%;
+    transform: rotate(-5deg);
+    clip-path: ellipse(50% 100% at 50% 50%);
+}
+
+.line-2 {
+    width: 120px;
+    height: 3px;
+    bottom: 0;
+    right: 10%;
+    border-radius: 50%;
+    transform: rotate(5deg);
+    clip-path: ellipse(50% 100% at 50% 50%);
+}
+
+.line-3 {
+    width: 3px;
+    height: 120px;
+    left: 0;
+    top: 20%;
+    border-radius: 50%;
+    transform: rotate(-5deg);
+    clip-path: ellipse(100% 50% at 50% 50%);
+}
+
+.line-4 {
+    width: 3px;
+    height: 100px;
+    right: 0;
+    bottom: 20%;
+    border-radius: 50%;
+    transform: rotate(5deg);
+    clip-path: ellipse(100% 50% at 50% 50%);
+}
+
+/* Star Icons - Adjusted Position */
+.hero-star {
+    position: absolute;
+    font-size: 3rem;
+    color: var(--color-white);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    animation: twinkle 2s ease-in-out infinite;
+    z-index: 10;
+}
+
+.star-left {
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    animation-delay: 0s;
+}
+
+.star-right {
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    animation-delay: 1s;
+}
+
+@keyframes twinkle {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: translateY(-50%) scale(1);
+    }
+
+    50% {
+        opacity: 0.7;
+        transform: translateY(-50%) scale(1.15);
+    }
+}
+
+/* Text Overlay - Centered */
+.hero-text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    /* Ensure text is above decorations */
+    text-align: center;
+    width: 100%;
+    pointer-events: none;
+    /* Let clicks pass to canvas/buttons if needed */
+}
+
+/* Enable pointer events for buttons inside overlay */
+.hero-cta-buttons {
+    pointer-events: auto;
+}
+
+.hero-title-large {
+    font-size: clamp(5rem, 12vw, 9rem);
+    font-weight: 300;
+    line-height: 0.85;
+    margin-bottom: var(--spacing-md);
+    position: relative;
+}
+
+.portfolio-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--color-white);
+    position: relative;
+    display: inline-block;
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5);
+    transition: var(--transition);
+    cursor: default;
+    pointer-events: auto;
+    /* Enable hover interaction */
+}
+
+.portfolio-text:hover {
+    transform: scale(1.05);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.6), 3px 3px 8px rgba(0, 0, 0, 0.5);
+    letter-spacing: 2px;
+}
+
+.hero-decorative-lines {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-sm);
+    justify-content: center;
+}
+
+.deco-line {
+    width: 60px;
+    height: 2px;
+    background: var(--color-white);
+    opacity: 0.8;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+.deco-line:nth-child(2) {
+    width: 40px;
+}
+
+.deco-line:nth-child(3) {
+    width: 80px;
+}
+
+/* ==================== ABOUT PHOTO SECTION ==================== */
+/* ==================== ABOUT PHOTO SECTION ==================== */
+.about-layout {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: var(--spacing-md);
+}
+
+.about-content {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.about-bio {
+    padding: var(--spacing-lg);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    text-align: left;
+    margin-bottom: var(--spacing-md);
+}
+
+.bio-text {
+    font-size: 1rem;
+    /* Much smaller font size */
+    line-height: 1.6;
+    color: var(--color-dark);
+    font-weight: 400;
+}
+
+/* About Details Grid */
+.about-details-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: var(--spacing-md);
+    align-items: start;
+}
+
+.education-section,
+.organizations-section {
+    padding: var(--spacing-lg);
+}
+
+.about-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-dark);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 0.5rem;
+}
+
+.timeline-item {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.timeline-date {
+    display: block;
+    font-size: 0.85rem;
+    opacity: 0.7;
+    margin-bottom: 0.2rem;
+    font-family: 'Outfit', sans-serif;
+}
+
+.timeline-item h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+}
+
+.institution {
+    display: block;
+    font-style: italic;
+    opacity: 0.9;
+    margin-bottom: 0.2rem;
+}
+
+.education-year {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--color-dark);
+    opacity: 0.8;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-desc {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 0.5rem;
+}
+
+.timeline-desc li {
+    position: relative;
+    padding-left: 1rem;
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    opacity: 0.8;
+}
+
+.timeline-desc li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--color-dark);
+}
+
+/* CV Download Button */
+.cv-download-wrapper {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.btn-cv-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
+    color: var(--color-dark);
+    font-family: var(--font-family);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-cv-download:hover {
+    background: linear-gradient(135deg, var(--color-pink), var(--color-peach));
+    color: var(--color-white);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(242, 134, 149, 0.3);
+    border-color: transparent;
+}
+
+.btn-cv-download svg {
+    transition: transform 0.3s ease;
+}
+
+.btn-cv-download:hover svg {
+    transform: translateY(2px);
+}
+
+@media (max-width: 768px) {
+    .about-details-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.about-photo-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/3;
+    border-radius: 20px;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--color-pink), var(--color-peach));
+    padding: 8px;
+    box-shadow: 0 20px 60px rgba(242, 134, 149, 0.3);
+    transition: var(--transition);
+}
+
+.about-photo-frame:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 30px 80px rgba(242, 134, 149, 0.4);
+}
+
+.about-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+    position: relative;
+    z-index: 1;
+}
+
+.photo-frame-border {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 12px;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* ==================== OLD HERO STYLES (FALLBACK) ==================== */
+.hero-content {
+    animation: fadeInUp 1s ease;
+    text-align: center;
+    padding: var(--spacing-xl) 0;
+}
+
+.hero-title {
+    font-size: var(--font-size-4xl);
+    font-weight: 700;
+    color: var(--color-dark);
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.2;
+}
+
+.highlight {
+    color: var(--color-pink);
+    position: relative;
+    display: inline-block;
+}
+
+.hero-subtitle {
+    font-size: var(--font-size-xl);
+    color: var(--color-dark);
+    margin-bottom: var(--spacing-sm);
+    font-weight: 500;
+}
+
+.hero-description {
+    font-size: var(--font-size-lg);
+    color: var(--color-text);
+    margin-bottom: var(--spacing-md);
+    opacity: 0.9;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: var(--spacing-sm);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ==================== BUTTONS ==================== */
+.btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+    border: 2px solid transparent;
+}
+
+.btn-primary {
+    background: var(--color-pink);
+    color: var(--color-white);
+    box-shadow: 0 10px 30px rgba(242, 134, 149, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(242, 134, 149, 0.4);
+    background: #e67585;
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    color: var(--color-dark);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.btn-secondary:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.5);
+    border-color: var(--color-pink);
+}
+
+/* ==================== HERO CONTENT ==================== */
+.hero-content {
+    text-align: center;
+    padding: var(--spacing-xl) 0;
+}
+
+.section-title {
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    color: var(--color-dark);
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+
+
+/* ==================== PROJECTS SECTION ==================== */
+/* Scroll Container */
+/* Scroll Container */
+.projects-scroll-container {
+    height: 100%;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    padding-right: 20px;
+    /* Add top spacing so first card isn't cut off */
+    padding-top: 40px;
+    padding-bottom: 40px;
+    /* Symmetry */
+}
+
+.project-section {
+    min-height: 100%;
+    /* Changed from fixed height to min-height */
+    width: 100%;
+    scroll-snap-align: center;
+    /* Center aligns better than start to avoid cutting off */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-lg) 0;
+    /* Increase vertical spacing between cards */
+}
+
+/* ==================== PROJECT CARD LAYOUT ==================== */
+.project-layout {
+    display: flex;
+    flex-direction: column;
+    /* Stack VERTICALLY: Text Top, Image Bottom */
+    gap: var(--spacing-md);
+    width: 90%;
+    max-width: 900px;
+    /* Keep it focused, not too wide */
+    height: auto;
+    /* Allow content to dictate height */
+    max-height: 85vh;
+    /* Ensure it mostly fits in view, but allow outer scroll if needed */
+    padding: var(--spacing-lg);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Media Section (Gallery) */
+.project-media {
+    width: 100%;
+    height: 250px;
+    /* Fixed horizontal strip height */
+    flex-shrink: 0;
+    border-radius: 12px;
+    overflow-x: auto;
+    /* Enable horizontal scrolling */
+    display: flex;
+    gap: 0;
+    scroll-snap-type: x mandatory;
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    cursor: grab;
+    margin-top: 1rem;
+    scrollbar-width: none;
+    /* Hide scrollbar Firefox */
+    -ms-overflow-style: none;
+    /* Hide scrollbar IE/Edge */
+}
+
+/* Hide scrollbar Chrome/Safari */
+.project-media::-webkit-scrollbar {
+    display: none;
+}
+
+.gallery-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-nav:hover {
+    background: var(--color-pink);
+    border-color: var(--color-pink);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.gallery-nav.prev {
+    left: 10px;
+}
+
+.gallery-nav.next {
+    right: 10px;
+}
+
+
+.project-media img {
+    flex: 0 0 100%;
+    /* Each image takes full width of container */
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    scroll-snap-align: start;
+    cursor: zoom-in;
+    transition: transform 0.5s ease;
+}
+
+.project-media:hover img {
+    transform: scale(1.05);
+}
+
+/* Info Section (Bottom) */
+.project-info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: visible;
+    /* No internal scrollbar */
+}
+
+.project-title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-dark);
+    line-height: 1.1;
+}
+
+.project-desc {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    color: var(--color-text);
+    opacity: 0.9;
+}
+
+/* Tech Stack Tags */
+.project-tech-stack h4,
+.project-features h4 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    opacity: 0.8;
+}
+
+.tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.tag {
+    padding: 0.25rem 0.8rem;
+    background: rgba(255, 255, 255, 0.4);
+    color: var(--color-dark);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 50px;
+    /* Capsule style */
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* Features List */
+.project-features ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    /* Single column for readability */
+    gap: 0.4rem;
+}
+
+.project-features li {
+    font-size: 0.9rem;
+    color: var(--color-text);
+    padding-left: 1.2rem;
+    position: relative;
+}
+
+.project-features li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--color-pink);
+    font-weight: bold;
+}
+
+.project-links {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 0.8rem;
+}
+
+.btn-project-link {
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+}
+
+.btn-project-link.primary {
+    background: var(--color-pink);
+    color: white;
+    box-shadow: 0 4px 12px rgba(242, 134, 149, 0.2);
+}
+
+.btn-project-link.secondary {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: var(--color-dark);
+}
+
+.btn-project-link:hover {
+    transform: translateY(-2px);
+    opacity: 0.95;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Media Query for larger screens vs mobile */
+@media (min-width: 1024px) {
+
+    /* If screen is tall enough, maybe allow grid again? 
+       No, user specifically asked for vertical stack logic. 
+       Stick to this consistent layout. */
+    .project-media {
+        height: 300px;
+        /* Taller image on big screens */
+    }
+}
+
+@media (max-width: 600px) {
+    .project-layout {
+        padding: var(--spacing-md);
+        width: 95%;
+    }
+
+    .project-media {
+        height: 180px;
+    }
+
+    .project-title {
+        font-size: 1.5rem;
+    }
+}
+
+/* ==================== CONTACT SECTION ==================== */
+/* ==================== CONTACT SECTION ==================== */
+.contact-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: var(--spacing-md);
+    text-align: left;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contact-container .section-title {
+    text-align: left;
+    margin-bottom: 0.2rem;
+    font-size: 2.5rem;
+}
+
+.contact-subtitle {
+    font-size: 1rem;
+    color: var(--color-dark);
+    margin-bottom: 1.5rem;
+    opacity: 0.8;
+    font-weight: 400;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 0;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.8rem 1.2rem;
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 12px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.95rem;
+    color: var(--color-dark);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.form-input::placeholder {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.form-input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.6);
+    border-color: var(--color-dark);
+    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.05);
+}
+
+.form-textarea {
+    min-height: 120px;
+    resize: none;
+}
+
+.btn-submit {
+    align-self: flex-start;
+    padding: 0.8rem 2.5rem;
+    background: var(--color-dark);
+    color: var(--color-white);
+    border: none;
+    border-radius: 50px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    margin-top: 0.5rem;
+}
+
+.btn-submit:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.5px;
+}
+
+/* ==================== FOOTER ==================== */
+.footer {
+    padding: var(--spacing-md);
+    text-align: center;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.footer p {
+    color: var(--color-dark);
+    opacity: 0.8;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeInUp 0.8s ease;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 768px) {
+    :root {
+        --font-size-4xl: 2.5rem;
+        --font-size-3xl: 2rem;
+        --font-size-2xl: 1.5rem;
+    }
+
+    /* Branding Header */
+    .name-text {
+        font-size: 1.2rem !important;
+        letter-spacing: 2px !important;
+    }
+
+    .brand-name {
+        top: 1rem;
+        left: 1rem;
+    }
+
+    /* Tab Navigation */
+    .tab-nav {
+        gap: 0.5rem;
+        padding: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .tab-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+        min-width: auto;
+    }
+
+    /* Tab Content Wrapper */
+    .tab-content-wrapper {
+        height: 80vh;
+    }
+
+    .tab-content {
+        padding: 1rem;
+    }
+
+    /* Hero Section */
+    .hero-content-new {
+        padding: var(--spacing-md);
+        min-height: 70vh;
+        max-height: 70vh;
+    }
+
+    .hero-title-large {
+        font-size: clamp(3rem, 12vw, 5rem);
+    }
+
+    .hero-photo-container {
+        width: 350px;
+        height: 260px;
+    }
+
+    .hero-star {
+        font-size: 2.5rem;
+    }
+
+    .star-left {
+        left: -35px;
+    }
+
+    .star-right {
+        right: -35px;
+    }
+
+    .wave-pattern {
+        width: 180px;
+        height: 180px;
+    }
+
+    /* About Section */
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .about-bio {
+        padding: 1.5rem;
+    }
+
+    .bio-text {
+        font-size: 0.95rem;
+    }
+
+    .about-details-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .education-section,
+    .organizations-section {
+        padding: 1.5rem;
+    }
+
+    .about-subtitle {
+        font-size: 1.3rem;
+    }
+
+    /* CV Button */
+    .btn-cv-download {
+        width: 100%;
+        justify-content: center;
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+    }
+
+    /* Projects Section */
+    .projects-scroll-container {
+        padding: 1rem;
+        padding-right: 0.5rem;
+    }
+
+    .project-layout {
+        flex-direction: column;
+        padding: 1.5rem;
+    }
+
+    .project-info {
+        max-width: 100%;
+    }
+
+    .project-title {
+        font-size: 1.5rem;
+    }
+
+    .project-desc {
+        font-size: 0.9rem;
+    }
+
+    .tech-tags {
+        flex-wrap: wrap;
+    }
+
+    .tag {
+        font-size: 0.75rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    .project-media {
+        margin-top: 1.5rem;
+    }
+
+    .project-gallery-wrapper {
+        margin-top: 1.5rem;
+    }
+
+    .gallery-nav {
+        width: 35px;
+        height: 35px;
+        font-size: 1.2rem;
+    }
+
+    /* Contact Form */
+    .contact-container {
+        padding: 1rem;
+    }
+
+    .contact-form {
+        max-width: 100%;
+    }
+
+    .form-input,
+    .form-textarea {
+        font-size: 1rem;
+        padding: 0.9rem;
+    }
+
+    .form-textarea {
+        min-height: 150px;
+    }
+
+    .btn-submit {
+        width: 100%;
+        padding: 1rem;
+        font-size: 1rem;
+    }
+
+    /* Footer */
+    .footer-content {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem 0;
+    }
+
+    .sticky-footer {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(20px);
+    }
+}
+
+
+/* ==================== HERO CANVAS ==================== */
+#hero-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    /* Let clicks pass through */
+}
+
+
+/* ==================== STICKY FOOTER ==================== */
+.sticky-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 0 var(--spacing-md);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    pointer-events: none;
+    /* Allow clicking through empty areas */
+    /* Add slight background to prevent text clash */
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.4) 60%, transparent 100%);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    /* Center icons */
+    align-items: center;
+    padding: 1rem 0;
+    pointer-events: auto;
+}
+
+.footer-neural-line {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.5),
+            transparent);
+    position: relative;
+    opacity: 0.5;
+}
+
+/* Animated particle trail effect on line */
+.footer-neural-line::after {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--color-white), transparent);
+    filter: blur(2px);
+    animation: lineTraverse 5s ease-in-out infinite;
+}
+
+@keyframes lineTraverse {
+    0% {
+        left: 0%;
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        left: 100%;
+        opacity: 0;
+    }
+}
+
+.social-links-minimal {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    /* Space between icons */
+}
+
+.social-icon {
+    color: var(--color-dark);
+    opacity: 0.75;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(45, 45, 45, 0.12);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.social-icon svg {
+    width: 22px;
+    height: 22px;
+    stroke-width: 2.5;
+}
+
+.social-icon:hover {
+    opacity: 1;
+    transform: translateY(-3px) scale(1.05);
+    color: var(--color-pink);
+    background: rgba(255, 255, 255, 0.7);
+    border-color: var(--color-pink);
+    box-shadow: 0 4px 20px rgba(242, 134, 149, 0.25);
+}
+
+/* Force social icons to be dark in Midnight Mode */
+body.midnight-mode .social-icon {
+    color: #2D2D2D;
+    background: rgba(255, 255, 255, 0.5);
+    /* Keep glass effect */
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+body.midnight-mode .social-icon:hover {
+    color: var(--color-pink);
+    background: rgba(255, 255, 255, 0.7);
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem 0;
+    }
+
+    .sticky-footer {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .main-container {
+        padding: var(--spacing-sm);
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .hero-content-new {
+        height: 70vh;
+    }
+
+    .brand-name {
+        bottom: 20px;
+        left: 20px;
+        top: auto;
+    }
+
+
+    /* Center decorations on mobile */
+    .hero-decorations {
+        width: 300px;
+        height: 300px;
+    }
+
+    .hero-star {
+        font-size: 1.5rem;
+    }
+
+    .star-left {
+        left: 0;
+    }
+
+    .star-right {
+        right: 0;
+    }
+
+    .wave-pattern {
+        width: 120px;
+        height: 120px;
+    }
+
+    .hero-title-large {
+        font-size: clamp(2.8rem, 15vw, 4.5rem);
+    }
+
+    .plus-icon {
+        font-size: 1.2rem;
+    }
+
+    .about-photo-frame {
+        max-width: 250px;
+    }
+
+    .tab-nav {
+        gap: var(--spacing-xs);
+    }
+
+    .tab-btn {
+        padding: 0.6rem 1rem;
+        font-size: var(--font-size-sm);
+    }
+
+    .projects-grid,
+    .about-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==================== LIGHTBOX MODAL ==================== */
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    padding-top: 50px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.lightbox.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
+
+.lightbox-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 80vh;
+    border-radius: 10px;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.lightbox.active .lightbox-content {
+    transform: scale(1);
+}
+
+.lightbox-caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+    font-size: 1.1rem;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+    z-index: 10001;
+}
+
+.lightbox-close:hover,
+.lightbox-close:focus {
+    color: var(--color-pink);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Extra Small Mobile Devices */
+@media (max-width: 480px) {
+    :root {
+        --font-size-4xl: 2rem;
+        --font-size-3xl: 1.5rem;
+        --font-size-2xl: 1.25rem;
+    }
+
+    /* Branding - Even Smaller */
+    .name-text {
+        font-size: 1rem !important;
+        letter-spacing: 1.5px !important;
+    }
+
+    .brand-name {
+        top: 0.75rem;
+        left: 0.75rem;
+    }
+
+    /* Tab Navigation - Compact */
+    .tab-nav {
+        gap: 0.3rem;
+        padding: 0.4rem;
+    }
+
+    .tab-btn {
+        padding: 0.5rem 0.9rem;
+        font-size: 0.85rem;
+    }
+
+    /* Hero */
+    .hero-title-large {
+        font-size: clamp(2.5rem, 10vw, 4rem);
+    }
+
+    .hero-photo-container {
+        width: 280px;
+        height: 210px;
+    }
+
+    .hero-star {
+        font-size: 1.5rem;
+    }
+
+    .wave-pattern {
+        width: 100px;
+        height: 100px;
+    }
+
+    /* About */
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .about-bio,
+    .education-section,
+    .organizations-section {
+        padding: 1rem;
+    }
+
+    .about-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .timeline-date {
+        font-size: 0.75rem;
+    }
+
+    /* Projects */
+    .project-layout {
+        padding: 1rem;
+    }
+
+    .project-title {
+        font-size: 1.25rem;
+    }
+
+    .project-desc {
+        font-size: 0.85rem;
+    }
+
+    .tag {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.6rem;
+    }
+
+    .gallery-nav {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+
+    /* Contact */
+    .form-input,
+    .form-textarea {
+        font-size: 0.95rem;
+        padding: 0.8rem;
+    }
+
+    .btn-submit {
+        padding: 0.9rem;
+        font-size: 0.95rem;
+    }
+
+    /* Footer */
+    .social-links {
+        gap: 1rem;
+    }
+
+    .social-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* Form Messages */
+.form-message {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.2rem 1.5rem;
+    border-radius: 15px;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(10px);
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form-success {
+    background: rgba(76, 175, 80, 0.15);
+    border: 1px solid rgba(76, 175, 80, 0.3);
+    color: #4CAF50;
+}
+
+.form-error {
+    background: rgba(244, 67, 54, 0.15);
+    border: 1px solid rgba(244, 67, 54, 0.3);
+    color: #F44336;
+}
+
+.form-message svg {
+    flex-shrink: 0;
+}
+
+.form-message p {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+/* Button Loading State */
+.btn-submit {
+    position: relative;
+}
+
+.btn-submit:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.btn-loading {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.spinner {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+</style>
 </head>
 
 <body>
@@ -34,11 +2137,34 @@
             <span class="hero-star star-left">✦</span>
             <span class="hero-star star-right">✦</span>
 
-            <!-- Abstract Lines -->
-            <div class="abstract-line line-1"></div>
-            <div class="abstract-line line-2"></div>
-            <div class="abstract-line line-3"></div>
-            <div class="abstract-line line-4"></div>
+            <!-- Abstract Lines Removed -->
+        </div>
+
+        <!-- Theme Toggle Switch (Fixed Top Right) -->
+        <div class="theme-toggle-wrapper">
+            <input type="checkbox" id="theme-toggle" class="theme-toggle-checkbox">
+            <label for="theme-toggle" class="theme-toggle-label">
+                <span class="theme-toggle-slider">
+                    <!-- Moon Icon (default) -->
+                    <svg class="toggle-icon moon-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="#2D2D2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <!-- Sun Icon -->
+                    <svg class="toggle-icon sun-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="#2D2D2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </span>
+            </label>
         </div>
 
         <!-- Tab Navigation -->
@@ -600,7 +2726,428 @@
         <div id="lightbox-caption" class="lightbox-caption"></div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+// ==================== THEME TOGGLE ====================
+const themeToggle = document.getElementById('theme-toggle');
+const body = document.body;
+
+// Check for saved theme preference or default to sunset mode
+const currentTheme = localStorage.getItem('theme') || 'sunset';
+if (currentTheme === 'midnight') {
+    body.classList.add('midnight-mode');
+    themeToggle.checked = true;
+}
+
+themeToggle.addEventListener('change', () => {
+    if (themeToggle.checked) {
+        body.classList.add('midnight-mode');
+        localStorage.setItem('theme', 'midnight');
+    } else {
+        body.classList.remove('midnight-mode');
+        localStorage.setItem('theme', 'sunset');
+    }
+});
+
+
+// ==================== HERO CANVAS ANIMATION ====================
+const canvas = document.getElementById('hero-canvas');
+const ctx = canvas.getContext('2d');
+
+let particles = [];
+let mouse = { x: null, y: null };
+
+// Resize canvas to fill container
+function resizeCanvas() {
+    const parent = canvas.parentElement;
+    canvas.width = parent.clientWidth;
+    canvas.height = parent.clientHeight;
+}
+
+window.addEventListener('resize', resizeCanvas);
+
+// Mouse interaction tracking
+document.addEventListener('mousemove', (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+});
+
+class Particle {
+    constructor(x, y) {
+        // Position is now passed from the grid system
+        this.x = x || Math.random() * canvas.width;
+        this.y = y || Math.random() * canvas.height;
+
+        // Slightly random offset from grid center if provided
+        if (x && y) {
+            this.x += (Math.random() - 0.5) * 100; // jitter
+            this.y += (Math.random() - 0.5) * 100;
+        }
+
+        this.size = Math.random() * 3 + 1; // Slightly larger for sparkles
+        this.baseSize = this.size;
+        this.speedX = Math.random() * 0.15 - 0.075; // Very slow horizontal drift
+        this.speedY = Math.random() * 0.15 - 0.075; // Very slow vertical drift
+        this.opacity = Math.random() * 0.5 + 0.1;
+        this.twinkleSpeed = Math.random() * 0.02 + 0.005;
+        this.twinkleDir = 1;
+    }
+
+    update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        // Twinkle effect
+        this.opacity += this.twinkleSpeed * this.twinkleDir;
+        if (this.opacity > 0.8 || this.opacity < 0.1) {
+            this.twinkleDir *= -1;
+        }
+
+        // Wrap around screen
+        if (this.x > canvas.width + 50) this.x = -50;
+        if (this.x < -50) this.x = canvas.width + 50;
+        if (this.y > canvas.height + 50) this.y = -50;
+        if (this.y < -50) this.y = canvas.height + 50;
+
+        // Mouse Parallax Effect (Smoother)
+        if (mouse.x != null) {
+            const dx = mouse.x - canvas.width / 2;
+            const dy = mouse.y - canvas.height / 2;
+            this.x -= dx * 0.0001;
+            this.y -= dy * 0.0001;
+        }
+    }
+
+    draw() {
+        ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+
+        // Draw simple circle (Dot)
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Soft glow for larger particles
+        if (this.size > 2) {
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = "rgba(255, 255, 255, 0.5)";
+            ctx.fill();
+            ctx.shadowBlur = 0; // Reset
+        }
+    }
+}
+
+function initParticles() {
+    particles = [];
+
+    // Grid based distribution for organized look
+    const area = canvas.width * canvas.height;
+    const density = 15000;
+    const cols = Math.floor(canvas.width / 150);
+    const rows = Math.floor(canvas.height / 150);
+
+    const colSize = canvas.width / cols;
+    const rowSize = canvas.height / rows;
+
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+            // Place one particle per grid cell
+            const x = c * colSize + colSize / 2;
+            const y = r * rowSize + rowSize / 2;
+            particles.push(new Particle(x, y));
+        }
+    }
+
+    // Add a few random extras for organic feel (20% count)
+    const extraCount = Math.floor((cols * rows) * 0.2);
+    for (let i = 0; i < extraCount; i++) {
+        particles.push(new Particle());
+    }
+}
+
+function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw();
+
+        // Connect nearby particles - subtle lines
+        for (let j = i; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            // Increased distance but much lower opacity for subtle connections
+            if (distance < 120) {
+                ctx.beginPath();
+                const opacity = (1 - distance / 120) * 0.15 * particles[i].opacity; // Dynamic opacity
+                ctx.strokeStyle = `rgba(255, 255, 255, ${opacity})`;
+                ctx.lineWidth = 0.5;
+                ctx.moveTo(particles[i].x, particles[i].y);
+                ctx.lineTo(particles[j].x, particles[j].y);
+                ctx.stroke();
+            }
+        }
+    }
+    requestAnimationFrame(animateParticles);
+}
+
+// Initialize Canvas
+if (canvas) {
+    resizeCanvas();
+    initParticles();
+    animateParticles();
+}
+
+// ==================== TAB SWITCHING ====================
+const tabButtons = document.querySelectorAll('.tab-btn');
+const tabContents = document.querySelectorAll('.tab-content');
+
+// Tab button click handlers (Re-added)
+tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const tabName = button.getAttribute('data-tab');
+        switchTab(tabName);
+    });
+});
+
+
+// ==================== FADE IN ANIMATIONS ====================
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in');
+        }
+    });
+}, observerOptions);
+
+// Observe all cards when tab becomes active
+function observeElements() {
+    const elementsToAnimate = document.querySelectorAll('.tab-content.active .glass-card, .tab-content.active .section-title, .hero-cta-buttons');
+    elementsToAnimate.forEach(el => observer.observe(el));
+}
+
+// Initial observation
+document.addEventListener('DOMContentLoaded', observeElements);
+
+// ==================== ENHANCED HOVER EFFECTS ====================
+const projectCards = document.querySelectorAll('.project-card');
+
+projectCards.forEach(card => {
+    card.addEventListener('mouseenter', function () {
+        this.style.transform = 'translateY(-10px) scale(1.02)';
+    });
+
+    card.addEventListener('mouseleave', function () {
+        this.style.transform = 'translateY(0) scale(1)';
+    });
+});
+
+// ==================== CONSOLE MESSAGE ====================
+console.log('%c✨ Elif Buse Çınar Portfolio ✨', 'color: #F28695; font-size: 20px; font-weight: bold;');
+console.log('%cDesigned with love and creativity 💖', 'color: #F2BFB4; font-size: 14px;');
+
+// ==================== PROJECT SCROLL INDICATOR ====================
+// Run finding elements after DOM is fully loaded + when switching tabs
+function initProjectObserver() {
+    const projectSections = document.querySelectorAll('.project-section');
+    const projectLabel = document.querySelector('.current-project-label');
+    const projectsContainer = document.querySelector('.projects-scroll-container');
+
+    if (projectSections.length > 0 && projectLabel && projectsContainer) {
+
+        const observerOptions = {
+            root: projectsContainer,
+            threshold: 0.5 // Trigger when 50% of the project is visible
+        };
+
+        const projectObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const title = entry.target.getAttribute('data-title');
+                    // Fade out
+                    projectLabel.style.opacity = '0';
+
+                    setTimeout(() => {
+                        projectLabel.textContent = title;
+                        // Fade in
+                        projectLabel.style.opacity = '1';
+                    }, 300);
+                }
+            });
+        }, observerOptions);
+
+        projectSections.forEach(section => {
+            projectObserver.observe(section);
+        });
+    }
+}
+
+// Re-init when switching to projects tab
+window.switchTab = function (tabName) {
+    // Remove active class from all tabs and contents
+    tabButtons.forEach(btn => btn.classList.remove('active'));
+    tabContents.forEach(content => content.classList.remove('active'));
+
+    // Add active class to selected tab and content
+    const selectedButton = document.querySelector(`[data-tab="${tabName}"]`);
+    const selectedContent = document.getElementById(tabName);
+
+    if (selectedContent) {
+        selectedContent.classList.add('active');
+    }
+    if (selectedButton) {
+        selectedButton.classList.add('active');
+    }
+
+    // Re-observe elements for animation
+    setTimeout(observeElements, 100);
+
+    // Init project observer if on projects tab
+    if (tabName === 'projects') {
+        setTimeout(initProjectObserver, 200);
+    }
+}
+
+// Initial check
+document.addEventListener('DOMContentLoaded', () => {
+    observeElements();
+    initProjectObserver();
+    initLightbox();
+    initGalleryNav();
+});
+
+// ==================== GALLERY NAVIGATION ====================
+function initGalleryNav() {
+    const wrappers = document.querySelectorAll('.project-gallery-wrapper');
+
+    wrappers.forEach(wrapper => {
+        const media = wrapper.querySelector('.project-media');
+        const prevBtn = wrapper.querySelector('.gallery-nav.prev');
+        const nextBtn = wrapper.querySelector('.gallery-nav.next');
+
+        if (!media || !prevBtn || !nextBtn) return;
+
+        prevBtn.addEventListener('click', () => {
+            media.scrollBy({
+                left: -media.clientWidth,
+                behavior: 'smooth'
+            });
+        });
+
+        nextBtn.addEventListener('click', () => {
+            media.scrollBy({
+                left: media.clientWidth,
+                behavior: 'smooth'
+            });
+        });
+    });
+}
+
+
+// ==================== LIGHTBOX LOGIC ====================
+function initLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const lightboxClose = document.querySelector('.lightbox-close');
+    const triggers = document.querySelectorAll('.lightbox-trigger');
+
+    if (!lightbox || !lightboxImg || !lightboxClose) return;
+
+    triggers.forEach(trigger => {
+        trigger.addEventListener('click', function () {
+            lightbox.classList.add('active');
+            lightboxImg.src = this.src;
+            lightboxCaption.textContent = this.alt;
+            document.body.style.overflow = 'hidden'; // Prevent scroll
+        });
+    });
+
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = ''; // Restore scroll
+    }
+
+    lightboxClose.addEventListener('click', closeLightbox);
+
+    // Close on click outside image
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+            closeLightbox();
+        }
+    });
+
+    // Close on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+            closeLightbox();
+        }
+    });
+}
+
+
+// ==================== CONTACT FORM HANDLING ====================
+const contactForm = document.getElementById('contact-form');
+const submitBtn = document.getElementById('submit-btn');
+const btnText = submitBtn.querySelector('.btn-text');
+const btnLoading = submitBtn.querySelector('.btn-loading');
+const formSuccess = document.getElementById('form-success');
+const formError = document.getElementById('form-error');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        // Hide previous messages
+        formSuccess.style.display = 'none';
+        formError.style.display = 'none';
+
+        // Show loading state
+        btnText.style.display = 'none';
+        btnLoading.style.display = 'flex';
+        submitBtn.disabled = true;
+
+        try {
+            const formData = new FormData(contactForm);
+            const response = await fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                // Success
+                formSuccess.style.display = 'flex';
+                contactForm.reset();
+
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    formSuccess.style.display = 'none';
+                }, 5000);
+            } else {
+                // Error
+                formError.style.display = 'flex';
+            }
+        } catch (error) {
+            // Network error
+            formError.style.display = 'flex';
+        } finally {
+            // Reset button state
+            btnText.style.display = 'inline';
+            btnLoading.style.display = 'none';
+            submitBtn.disabled = false;
+        }
+    });
+}
+
+</script>
 </body>
 
 </html>
