@@ -1443,6 +1443,19 @@
             letter-spacing: 0.5px;
         }
 
+        /* Fix for Midnight Mode - Ensure button is visible */
+        body.midnight-mode .btn-submit {
+            background: #FFFFFF;
+            color: #2D2D2D;
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+        }
+
+        body.midnight-mode .btn-submit:hover {
+            background: var(--color-pink);
+            color: #FFFFFF;
+            box-shadow: 0 20px 40px rgba(124, 103, 158, 0.4);
+        }
+
         /* ==================== FOOTER ==================== */
         .footer {
             padding: var(--spacing-md);
