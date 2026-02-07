@@ -349,11 +349,10 @@
             overflow-y: scroll;
             overflow-x: hidden;
             /* Prevent horizontal overflow */
-            scroll-snap-type: y mandatory;
             scroll-behavior: smooth;
             padding-right: 20px;
-            padding-top: 30px;
-            /* Increased to prevent clipping */
+            padding-top: 20px;
+            /* Top padding for better visibility */
             padding-bottom: 40px;
             padding-left: 5px;
             /* Small left padding for better spacing */
@@ -435,7 +434,6 @@
             /* Account for scrollbar */
             height: 100%;
             overflow-y: auto;
-            scroll-snap-type: y mandatory;
         }
 
         /* Ensure scrollbar applies nicely to nested container */
@@ -1506,6 +1504,14 @@
                 left: 1rem;
             }
 
+            /* Theme Toggle - Move to bottom left on mobile to avoid tab overlap */
+            .theme-toggle-wrapper {
+                top: auto;
+                bottom: var(--spacing-md);
+                right: auto;
+                left: var(--spacing-md);
+            }
+
             /* Tab Navigation */
             .tab-nav {
                 gap: 0.5rem;
@@ -1600,6 +1606,8 @@
             /* Projects Section */
             .projects-scroll-container {
                 padding: 1rem;
+                padding-top: 1.5rem;
+                /* Extra top padding to ensure first project is fully visible */
                 padding-right: 0.5rem;
             }
 
@@ -2563,11 +2571,13 @@
                                 <h3 class="project-title" style="font-weight: 800; letter-spacing: -0.5px;">TeamTrack –
                                     Team & Task Management System</h3>
                                 <p class="project-desc">
-                                    A robust, <strong>full-stack scalable management system</strong> focused on clean
-                                    backend architecture.
-                                    This project simulates real-world product development workflows, featuring
-                                    relational data modeling (User → Project → Task) and a scalable RESTful API design
-                                    for seamless frontend–backend integration.
+                                    A <strong>production-oriented full-stack system</strong> built with a strong focus
+                                    on
+                                    <strong>scalable backend architecture</strong> and real-world software design
+                                    principles.
+                                    Implements <strong>relational domain modeling</strong> (User → Project → Task) and a
+                                    <strong>secure, extensible RESTful API</strong> prepared for complex frontend
+                                    interactions.
                                 </p>
 
                                 <div class="project-tech-stack">
@@ -2575,16 +2585,18 @@
                                         <span class="tag">Java</span>
                                         <span class="tag">Spring Boot</span>
                                         <span class="tag">Spring Data JPA</span>
-                                        <span class="tag">React (Planned)</span>
+                                        <span class="tag">React</span>
                                         <span class="tag">REST API</span>
                                     </div>
                                 </div>
 
                                 <p class="project-status"
                                     style="margin-top: 1rem; font-size: 0.9rem; color: var(--color-dark); opacity: 0.9;">
-                                    <strong>State:</strong> <span style="color: var(--color-pink); font-weight: 700;">In
-                                        Progress</span> — <i>Backend entities implemented, frontend and APIs under
-                                        development.</i>
+                                    <strong>State:</strong> <span
+                                        style="color: var(--color-pink); font-weight: 700;">Actively
+                                        Developed</span> — <i>Core backend finalized, authentication, advanced task
+                                        workflows,
+                                        and frontend integration underway.</i>
                                 </p>
 
                                 <div class="project-links"
@@ -2595,7 +2607,7 @@
                                     </a>
                                     <span
                                         style="font-size: 0.8rem; opacity: 0.7; font-style: italic; color: var(--color-dark);">
-                                        Multi-repository organization (backend & frontend development)
+                                        Multi-repository architecture (independent backend & frontend codebases)
                                     </span>
                                 </div>
                             </div>
